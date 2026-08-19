@@ -43,8 +43,8 @@
   --photo-haut:max(52vh,336px);
   --repli:.55s;
 
-  --photo-y:        24%;   /* à l'arrivée, photo pleine hauteur   */
-  --photo-y-replie: 10%;   /* une fois repliée  ← LE RÉGLAGE UTILE */
+  --photo-y:        30%;   /* à l'arrivée, photo pleine hauteur   */
+  --photo-y-replie: 20%;   /* une fois repliée  ← LE RÉGLAGE UTILE */
   --photo-y-mobile: 16%;   /* bannière du téléphone               */
 }
 
