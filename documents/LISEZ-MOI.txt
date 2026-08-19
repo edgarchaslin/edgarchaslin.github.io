@@ -1,0 +1,22 @@
+DOSSIER « documents »
+=====================
+
+C'est ici que se déposent les PDF proposés au téléchargement sur le site.
+
+Pour la thèse
+-------------
+Déposer le manuscrit dans ce dossier sous le nom exact indiqué à la ligne
+« fichier » du fichier  contenu/5-these.js , actuellement :
+
+    These-Edgar-Chaslin.pdf
+
+Tant que le fichier n'est pas là, la section « Thesis » du site reste
+visible mais affiche un message d'attente à la place de la liseuse :
+rien n'est cassé, il n'y a pas d'erreur pour le visiteur.
+
+Une fois le PDF déposé, la liseuse s'affiche toute seule et les chapitres
+du sommaire ouvrent le PDF directement à la bonne page. Ces numéros de
+page se règlent dans contenu/5-these.js.
+
+Le CV, lui, n'a pas besoin de fichier : il est fabriqué automatiquement
+à partir du contenu du site quand le visiteur clique sur « Download CV ».

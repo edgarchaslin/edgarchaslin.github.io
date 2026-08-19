@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CARTE D'IDENTITÉ DE LA PAGE
+     Le titre ci-dessous est celui affiché dans l'onglet du navigateur et
+     dans les résultats de recherche. La description est le petit texte
+     gris qui l'accompagne sur Google. Ce sont les deux seules lignes de
+     ce fichier qu'il est utile de retoucher de temps en temps.
+     ═══════════════════════════════════════════════════════════════════ -->
+<title>Edgar Chaslin — Post-doctoral Researcher, CEA SPEC</title>
+<meta name="description" content="Edgar Chaslin — post-doctoral researcher at CEA SPEC, Université Paris-Saclay. Epitaxial growth and characterisation of ferroelectric oxide thin films.">
+<meta name="author" content="Edgar Chaslin">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Edgar Chaslin — Post-doctoral Researcher, CEA SPEC">
+<meta property="og:description" content="Epitaxial growth and characterisation of ferroelectric oxide thin films, from deposition to unit-cell polarisation mapping.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Aperçu au partage : une fois le site en ligne, déposer une image 1200x630 px
+     dans images/apercu.jpg puis décommenter la ligne suivante en remplaçant le domaine.
+<meta property="og:image" content="https://TON-DOMAINE/images/apercu.jpg"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%233B5A49'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23F6F4F0' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+
+<!-- Polices de caractères, chargées depuis Google Fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Karla:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     APPARENCE — dossier « css »
+     Les fichiers sont chargés dans cet ordre ; les couleurs et les polices
+     se règlent dans le premier, css/1-base.css.
+     ═══════════════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="css/1-base.css">
+<link rel="stylesheet" href="css/2-colonne-portrait.css">
+<link rel="stylesheet" href="css/3-contenu.css">
+<link rel="stylesheet" href="css/4-sections.css">
+<link rel="stylesheet" href="css/5-these-et-images.css">
+<link rel="stylesheet" href="css/6-cv-genere.css">
+<link rel="stylesheet" href="css/7-impression.css">
+</head>
+
+<body>
+<!-- La page est volontairement presque vide : tout le contenu est écrit
+     dans le dossier « contenu » puis inséré ici par le dossier « js ». -->
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="stage">
+  <!-- La colonne de gauche a deux étages. « media » tient toute la hauteur
+       de l'écran à l'arrivée, puis se replie dès que le défilement commence
+       et découvre « carte », restée jusque-là hors champ. -->
+  <aside class="aside" id="top">
+    <div class="media">
+      <img id="portrait" alt="">
+      <div class="veil"></div>
+      <div class="plate" id="plate"></div>
+    </div>
+    <div class="carte" id="carte"></div>
+  </aside>
+  <div class="flow">
+    <nav class="topbar" id="topbar" aria-label="Sections"></nav>
+    <main id="main"><div class="printhead" id="printhead"></div></main>
+  </div>
+</div>
+
+<div id="cvdoc" role="dialog" aria-modal="true" aria-label="Curriculum vitae"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CONTENU DU SITE — dossier « contenu »
+     C'EST ICI QU'ON MET LE SITE À JOUR : ouvrir le fichier qui correspond
+     à la section à modifier, changer le texte, enregistrer, recharger.
+     Si un nouveau fichier de contenu est ajouté, penser à l'ajouter à
+     cette liste ET dans js/1-assemblage.js.
+     ═══════════════════════════════════════════════════════════════════ -->
+<script src="contenu/1-identite.js"></script>
+<script src="contenu/2-titres.js"></script>
+<script src="contenu/3-a-propos.js"></script>
+<script src="contenu/4-recherche.js"></script>
+<script src="contenu/5-these.js"></script>
+<script src="contenu/6-galerie.js"></script>
+<script src="contenu/7-parcours.js"></script>
+<script src="contenu/8-publications.js"></script>
+<script src="contenu/9-distinctions.js"></script>
+<script src="contenu/10-enseignement.js"></script>
+<script src="contenu/11-competences.js"></script>
+<!-- Fichier ecrit automatiquement par outils/optimiser-images.py : il
+     liste les versions allegees des images. Voir LISEZ-MOI.md. -->
+<script src="contenu/12-images-optimisees.js"></script>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     MACHINERIE — dossier « js »
+     Rien à modifier ici pour mettre le site à jour. L'ordre compte :
+     chaque fichier a besoin du précédent.
+     ═══════════════════════════════════════════════════════════════════ -->
+<script src="js/1-assemblage.js"></script>
+<script src="js/2-outils.js"></script>
+<script src="js/3-these.js"></script>
+<script src="js/4-cv.js"></script>
+<script src="js/5-page.js"></script>
+<script src="js/6-demarrage.js"></script>
+</body>
+</html>

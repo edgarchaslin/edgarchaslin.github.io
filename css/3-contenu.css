@@ -1,0 +1,32 @@
+/* ======================================================================
+   COLONNE DE DROITE — barre d'onglets et titres de sections
+
+   Barre de navigation collante, titres, animation d'apparition.
+   ====================================================================== */
+
+/* ── Colonne contenu ──────────────────────────────────────────────── */
+.flow{min-width:0}
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 93%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:0 var(--gut);
+  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.topbar::-webkit-scrollbar{display:none}
+.topbar a{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+  text-decoration:none;color:var(--warm);padding:15px 11px;white-space:nowrap;
+  border-bottom:2px solid transparent;transition:.2s}
+.topbar a:hover{color:var(--ink)}
+.topbar a.on{color:var(--moss);border-bottom-color:var(--moss)}
+
+section{padding:clamp(52px,6.6vw,96px) var(--gut);border-bottom:1px solid var(--line);scroll-margin-top:var(--bar)}
+section:last-of-type{border-bottom:0}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--moss);margin:0 0 14px}
+h2{font-family:var(--disp);font-weight:300;font-size:clamp(27px,3.4vw,42px);line-height:1.08;
+  letter-spacing:-.025em;margin:0 0 30px;max-width:20ch}
+h2 em{font-style:italic;font-weight:500}
+h3{font-family:var(--disp);font-weight:500;font-size:19px;line-height:1.28;letter-spacing:-.01em;margin:0 0 7px}
+p{margin:0 0 15px}
+.lead{font-size:17.5px;line-height:1.72;max-width:64ch;color:var(--ink-2)}
+.subhead{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--warm);margin:0 0 18px}
+.rev{opacity:0;transform:translateY(12px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.3,1)}
+.rev.in{opacity:1;transform:none}

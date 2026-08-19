@@ -1,0 +1,195 @@
+/* ======================================================================
+   COLONNE DE GAUCHE — grande photo, nom, accroche, liens, contact
+
+   La colonne a deux états.
+
+   À L'ARRIVÉE, la photo occupe toute la hauteur de l'écran : c'est la
+   première impression, on n'y touche pas.
+
+   DÈS QUE LE DÉFILEMENT COMMENCE, elle se replie à un peu moins de la
+   moitié et découvre la carte de contact, jusque-là hors champ. Le
+   visiteur garde ainsi l'e-mail sous les yeux d'un bout à l'autre du
+   site, au lieu de devoir redescendre en bas de page pour le trouver.
+
+   Trois réglages suffisent à tout ajuster :
+     --photo-haut    hauteur de la photo une fois repliée
+     --repli         durée du mouvement
+   et, dans js/2-outils.js, les deux seuils de défilement.
+
+   Le dernier bloc @media règle l'affichage sur téléphone, où la colonne
+   redevient une simple bannière : rien ne se replie.
+   ====================================================================== */
+
+/* ══ LES CINQ RÉGLAGES DE LA COLONNE ══════════════════════════════════
+
+   --photo-haut     hauteur de la photo une fois repliée. Le plancher en
+                    pixels n'est pas décoratif : le bloc titre est posé
+                    au bas de la photo et déborderait par le haut — nom
+                    rogné — sur un écran d'ordinateur portable peu haut.
+   --repli          durée du mouvement.
+
+   --photo-y…       CADRAGE VERTICAL de la photo, c'est-à-dire quelle
+                    tranche de l'image reste visible quand le cadre est
+                    trop court pour la contenir entière :
+                       0%   on garde le HAUT de la photo
+                      50%   on garde le MILIEU
+                     100%   on garde le BAS
+                    Trois valeurs, une par situation. Elles se règlent
+                    indépendamment — c'est celle du milieu, « replie »,
+                    qui compte le plus (voir la note ci-dessous).
+   ═════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --photo-haut:max(52vh,336px);
+  --repli:.55s;
+
+  --photo-y:        24%;   /* à l'arrivée, photo pleine hauteur   */
+  --photo-y-replie: 10%;   /* une fois repliée  ← LE RÉGLAGE UTILE */
+  --photo-y-mobile: 16%;   /* bannière du téléphone               */
+}
+
+/* NOTE — sur un écran 16/9, la colonne fait 40 % de la largeur pour
+   100 % de la hauteur, soit un cadre plus étroit que la photo : à
+   l'arrivée, celle-ci est donc rognée sur les CÔTÉS, jamais en hauteur.
+   Y jouer sur « --photo-y » n'y change rien de visible. C'est une fois
+   repliée que le cadre devient large et court, et que le cadrage
+   vertical décide vraiment de ce qu'on voit : c'est
+   « --photo-y-replie » qu'il faut ajuster. */
+
+/* ── Colonne portrait ─────────────────────────────────────────────── */
+.stage{display:grid;grid-template-columns:40vw 1fr}
+.aside{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--sage);
+  display:flex;flex-direction:column}
+
+/* L'étage photo. Sa hauteur est la SEULE chose qui change au repli :
+   tout le reste suit, ce qui garde le mouvement simple et fluide. */
+.media{position:relative;flex:0 0 auto;height:100vh;overflow:hidden;
+  transition:height var(--repli) cubic-bezier(.2,.7,.3,1)}
+.aside.compact .media{height:var(--photo-haut)}
+
+/* Le cadrage glisse pendant le repli, en même temps que la hauteur :
+   la photo se recentre au lieu de sauter d'un cadrage à l'autre. */
+.aside img{width:100%;height:100%;object-fit:cover;object-position:50% var(--photo-y);
+  transition:object-position var(--repli) cubic-bezier(.2,.7,.3,1)}
+.aside.compact img{object-position:50% var(--photo-y-replie)}
+.aside .veil{position:absolute;inset:0;background:linear-gradient(180deg,transparent 32%,rgba(20,17,14,.88))}
+.aside .plate{position:absolute;left:0;right:0;bottom:0;padding:var(--gut);color:#fff;
+  transition:padding var(--repli) cubic-bezier(.2,.7,.3,1)}
+.aside h1{font-family:var(--disp);font-weight:300;font-size:clamp(32px,4vw,60px);line-height:.94;
+  letter-spacing:-.03em;margin:0 0 12px;transition:font-size var(--repli) cubic-bezier(.2,.7,.3,1)}
+.aside h1 b{display:block;font-weight:700;font-style:italic}
+.aside .role{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.9;margin:0 0 3px}
+.aside .lab{font-size:13.5px;opacity:.72;margin:0 0 16px;max-height:5em;overflow:hidden;
+  transition:max-height var(--repli),opacity .3s,margin var(--repli)}
+/* max-height chiffré — et non « auto » — pour que la disparition de
+   l'accroche puisse être animée : on ne sait pas animer vers auto. */
+.aside .accroche{font-family:var(--disp);font-style:italic;font-weight:300;font-size:15.5px;
+  line-height:1.42;opacity:.92;margin:0 0 22px;max-width:34ch;max-height:12em;overflow:hidden;
+  padding-top:15px;border-top:1px solid rgba(255,255,255,.3);
+  transition:max-height var(--repli),opacity .3s,margin var(--repli),
+             padding var(--repli),border-color .3s}
+.aside .soc{display:flex;flex-wrap:wrap;gap:8px}
+.aside .soc a{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border:1px solid rgba(255,255,255,.42);border-radius:99px;padding:7px 14px;transition:.2s}
+.aside .soc a:hover{background:#fff;color:var(--ink);border-color:#fff}
+
+/* Une fois repliée, la photo est bien plus courte : le bloc de titre
+   doit maigrir pour continuer à y tenir. L'accroche s'efface — elle a
+   joué son rôle à l'arrivée — et le nom perd quelques points. */
+/* La grande marge haute du bloc titre n'a plus lieu d'être : le bloc
+   étant collé en bas, elle ne fait qu'ajouter de la hauteur et grignoter
+   la photo qui reste visible au-dessus. */
+.aside.compact .plate{padding-top:clamp(14px,1.6vw,22px);padding-bottom:clamp(15px,1.8vw,24px)}
+.aside.compact h1{font-size:clamp(24px,2.5vw,38px)}
+.aside.compact .accroche{max-height:0;opacity:0;margin-bottom:0;padding-top:0;border-top-color:transparent}
+/* Le laboratoire s'efface aussi : il se relit deux lignes plus bas,
+   dans l'adresse de la carte, et ces 30 px reviennent à la photo. */
+.aside.compact .lab{max-height:0;opacity:0;margin-bottom:10px}
+
+
+/* ── Carte de contact ─────────────────────────────────────────────────
+   Même fond sombre que le bas de la photo : les deux étages se lisent
+   comme un seul panneau, la couture ne se voit pas. */
+.carte{flex:1 1 auto;min-height:0;overflow-y:auto;
+  background:#1E1A17;color:#fff;border-top:1px solid rgba(255,255,255,.1);
+  /* Marges hautes et basses en vh, et non en vw : ce qui manque à la
+     carte sur un écran d'ordinateur portable, c'est de la hauteur. */
+  padding:clamp(16px,2vh,30px) var(--gut) clamp(15px,1.8vh,26px);
+  display:flex;flex-direction:column;gap:clamp(10px,1.4vh,14px);
+  opacity:0;transform:translateY(12px);
+  transition:opacity .45s .1s,transform .5s .1s}
+.aside.compact .carte{opacity:1;transform:none}
+.carte .eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sage);margin:0}
+.c-mail{font-family:var(--disp);font-weight:300;font-size:clamp(15px,1.5vw,23px);letter-spacing:-.02em;
+  color:#fff;text-decoration:none;align-self:start;word-break:break-word;
+  border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:4px;transition:.22s}
+.c-mail:hover{border-bottom-color:#fff}
+.c-addr{font-family:var(--mono);font-size:10.5px;line-height:1.65;color:rgba(255,255,255,.58);margin:0}
+
+/* ── « Currently » ────────────────────────────────────────────────────
+   Occupe l'espace laissé libre entre l'adresse et le repère de lecture,
+   qui atteint 280 px sur un grand écran. Tout est repris des fichiers
+   de contenu : rien à tenir à jour ici.
+
+   Le bloc s'allège par paliers quand la hauteur manque (voir le @media
+   plus bas), puis s'efface complètement : sur un écran court, mieux
+   vaut ne rien afficher qu'un texte coupé au milieu. */
+.c-actu{padding-top:clamp(12px,1.6vh,20px);border-top:1px solid rgba(255,255,255,.1);
+  display:flex;flex-direction:column;gap:clamp(7px,.9vh,11px);min-height:0}
+.a-tete{display:flex;flex-wrap:wrap;align-items:center;gap:7px 10px;margin:0}
+.a-pastille{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:#1E1A17;background:var(--sage);border-radius:99px;padding:2px 9px}
+.a-quand{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;color:rgba(255,255,255,.5)}
+/* Titres bornés à un nombre de lignes fixe. Sans cela, la hauteur du
+   bloc dépendrait de la longueur des textes : un titre de projet un peu
+   plus long, saisi dans six mois, ferait déborder la carte. */
+.a-titre{font-family:var(--disp);font-weight:300;font-size:14.5px;line-height:1.38;
+  color:#fff;margin:0;max-width:46ch;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.a-mots{display:flex;flex-wrap:wrap;gap:5px}
+.a-mots span{font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,.6);
+  border:1px solid rgba(255,255,255,.2);border-radius:3px;padding:2px 7px}
+.a-pubs{display:flex;flex-direction:column;gap:8px}
+.a-sous{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.36);margin:2px 0 0}
+.a-pub{display:block;text-decoration:none;border-left:1px solid rgba(255,255,255,.18);
+  padding-left:10px;transition:border-color .2s}
+.a-pub:hover{border-left-color:var(--sage)}
+.a-pub .t{font-size:11.5px;line-height:1.4;color:rgba(255,255,255,.86);
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.a-pub .s{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.04em;
+  color:rgba(255,255,255,.42);margin-top:3px;transition:color .2s}
+.a-pub:hover .s{color:var(--sage)}
+
+/* Paliers de dégraissage, du plus grand écran au plus petit. Les
+   seuils sont donnés en HAUTEUR de fenêtre : c'est elle, et non la
+   largeur, qui décide de la place disponible dans la carte. */
+@media(max-height:1010px){ .a-pub:nth-of-type(2){display:none} } /* un seul article   */
+@media(max-height:900px){  .a-pubs{display:none} }               /* plus d'articles   */
+@media(max-height:730px){  .a-mots{display:none} }               /* plus de mots-clés */
+@media(max-height:660px){  .c-actu{display:none} }               /* plus rien         */
+
+/* Repère de lecture, poussé en bas de la carte par margin-top:auto.
+   Onze sections et 15 000 px de page : savoir où l'on en est aide. */
+.c-lecture{margin-top:auto;padding-top:15px;border-top:1px solid rgba(255,255,255,.1)}
+.c-piste{height:2px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+.c-piste span{display:block;height:100%;width:0;background:var(--sage);transition:width .12s linear}
+.c-etat{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:9px 0 0;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase}
+.c-etat b{font-weight:400;color:#fff}
+.c-etat span{color:rgba(255,255,255,.45);white-space:nowrap}
+
+
+/* ── Téléphone et petites tablettes ───────────────────────────────────
+   La colonne cesse d'être collante : elle redevient une bannière que
+   l'on quitte en défilant. Il n'y a donc plus rien à replier, et la
+   carte n'a pas lieu d'être — la section « Contact » est à deux pouces. */
+@media(max-width:940px){
+  .stage{grid-template-columns:1fr}
+  .aside{position:relative;height:auto;min-height:80vh;display:block}
+  .media{position:static;height:auto;overflow:visible}
+  .aside img{position:absolute;inset:0;object-position:50% var(--photo-y-mobile)}
+  .aside .plate{position:relative;padding-top:44vh}
+  .carte{display:none}
+}

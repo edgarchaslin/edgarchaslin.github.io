@@ -1,0 +1,13 @@
+# Réglages de l'éditeur JetBrains — propres à cet ordinateur
+.idea/
+
+# Réglages locaux de Claude Code
+.claude/
+
+# Sauvegarde locale de l'ancien site en fichier unique
+_ancienne-version/
+
+# Fichiers créés par Windows et macOS
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,37 @@
+/* ======================================================================
+   BASE — couleurs, polices, réglages généraux
+
+   Toutes les couleurs du site se changent ici, dans le bloc :root.
+   --paper = le fond, --ink = le texte, --moss = le vert d'accent,
+   --sage = le vert clair, --warm = le gris-brun des petites légendes.
+   ====================================================================== */
+
+:root{
+  --paper:#F6F4F0; --ink:#241F1B; --ink-2:#3A322C; --sage:#C4CCC5; --moss:#3B5A49; --warm:#8A7A6B;
+  --line:rgba(36,31,27,.14); --line-2:rgba(36,31,27,.28);
+  --disp:"Fraunces",Georgia,serif; --body:"Karla",system-ui,sans-serif; --mono:"DM Mono",ui-monospace,monospace;
+  --gut:clamp(24px,4.4vw,68px); --bar:52px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+/* height:auto est indispensable et ne doit jamais être retiré.
+   Chaque image porte désormais les dimensions de l'original dans son
+   HTML (width="8000" height="5200") : c'est ce qui réserve la bonne
+   place avant son arrivée et empêche la page de sursauter. Mais le
+   navigateur traite AUSSI ces deux nombres comme une taille imposée.
+   La largeur est bien reprise par les feuilles suivantes ; la hauteur,
+   elle, ne l'est nulle part — sans la ligne ci-dessous, une vignette
+   de 240 px de large s'afficherait donc sur 5200 px de haut. */
+img{max-width:100%;height:auto;display:block}
+/* Les images sont enveloppées dans un <picture> qui propose plusieurs
+   tailles au navigateur. display:contents efface cette enveloppe de la
+   mise en page : les réglages écrits pour « img » continuent de valoir. */
+picture{display:contents}
+a{color:inherit}
+::selection{background:var(--moss);color:var(--paper)}
+:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--moss);color:var(--paper);
+  padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.skip:focus{left:0}

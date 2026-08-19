@@ -1,0 +1,33 @@
+/* ======================================================================
+   IMPRESSION — mise en page utilisée lors d'une impression
+
+   Sert aussi à l'enregistrement du CV en PDF.
+   ====================================================================== */
+
+/* ── Impression ────────────────────── */
+.printhead{display:none}
+html.cv-print body > *:not(#cvdoc){display:none!important}
+@media print{
+  @page{margin:16mm}
+  html.cv-print{background:#fff}
+  html.cv-print #cvdoc{position:static;display:block!important;background:#fff;padding:0;overflow:visible}
+  html.cv-print .cv-bar{display:none}
+  html.cv-print .cv{width:auto;max-width:none;margin:0;padding:0;box-shadow:none;font-size:10pt}
+  .aside,.topbar,.hint,.filters,.strip,.thumb,.lightbox,.skip,footer,.frame,.dl,.cvbtn{display:none!important}
+  .stage{display:block}
+  body{background:#fff;color:#000;font-size:10.5pt;line-height:1.45}
+  .printhead{display:block;border-bottom:1.5pt solid #000;padding-bottom:8pt;margin-bottom:14pt}
+  .printhead h1{font-family:var(--disp);font-size:22pt;margin:0 0 4pt}
+  .printhead p{margin:0;font-size:9.5pt}
+  section{padding:10pt 0;border-bottom:.5pt solid #999}
+  h2{font-size:14pt;margin:0 0 8pt}
+  h3{font-size:11pt}
+  .rev{opacity:1!important;transform:none!important}
+  .rblock{grid-template-columns:1fr}
+  .yr{grid-template-columns:60pt 1fr}
+  .yr-n{position:static}
+  .pub,.row,.tl .it,.aw article{break-inside:avoid}
+  a{color:#000}
+  .aw{display:block;border:0;background:none}
+  .aw article{padding:8pt 0;border-bottom:.5pt solid #ccc}
+}

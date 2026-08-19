@@ -1,0 +1,96 @@
+/* ======================================================================
+   CV GÉNÉRÉ — la feuille A4 fabriquée à la volée
+
+   Ne concerne que la fenêtre ouverte par le bouton « Download CV ».
+   ====================================================================== */
+
+/* ══ CV GÉNÉRÉ ════════════════════════════════════════════════════════
+   Feuille A4 fabriquée à la volée depuis le contenu de la page.       */
+#cvdoc{position:fixed;inset:0;z-index:120;background:#2A2622;overflow:auto;
+  padding:64px 20px 60px;display:none}
+.cv-bar{position:fixed;top:0;left:0;right:0;height:52px;z-index:2;display:flex;
+  align-items:center;justify-content:space-between;gap:14px;padding:0 clamp(14px,3vw,26px);
+  background:rgba(20,17,14,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.16)}
+.cv-bar span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#C8BFB4}
+.cv-bar .acts{display:flex;gap:8px}
+.cv-bar button{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.38);background:none;color:#fff;border-radius:99px;
+  padding:8px 15px;cursor:pointer;transition:.2s}
+.cv-bar button:hover{background:#fff;color:var(--ink)}
+.cv-bar button.primary{background:var(--moss);border-color:var(--moss)}
+.cv-bar button.primary:hover{background:#fff;color:var(--ink);border-color:#fff}
+
+.cv{width:210mm;max-width:100%;margin:0 auto;background:#fff;color:var(--ink);
+  padding:16mm 15mm 18mm;box-shadow:0 18px 60px rgba(0,0,0,.45);
+  font-family:var(--body);font-size:10.2pt;line-height:1.46}
+.cv h1,.cv h2,.cv h3{margin:0}
+.cv-head{display:grid;grid-template-columns:1fr 26mm;gap:8mm;align-items:start;
+  border-bottom:2.4pt solid var(--moss);padding-bottom:5mm;margin-bottom:5mm}
+.cv-head h1{font-family:var(--disp);font-weight:300;font-size:27pt;line-height:1;letter-spacing:-.025em}
+.cv-head h1 b{font-weight:700;font-style:italic}
+.cv-head .role{font-family:var(--mono);font-size:8.4pt;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--moss);margin:3mm 0 1mm}
+.cv-head .lab{font-size:10pt;color:var(--ink-2);margin:0}
+.cv-head .kicker{font-family:var(--mono);font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--warm);margin:0 0 2mm}
+.cv-head img{width:26mm;height:31mm;object-fit:cover;border:1pt solid var(--line-2)}
+.cv-contact{display:flex;flex-wrap:wrap;gap:1.5mm 6mm;font-family:var(--mono);font-size:8pt;
+  color:var(--ink-2);margin-bottom:6mm}
+.cv-contact b{color:var(--moss);font-weight:400}
+.cv-contact a{color:var(--ink-2);text-decoration:none}
+
+.cv section{padding:0;border:0}
+.cv-sec{margin-top:6mm;break-inside:auto}
+.cv-sec > h2{max-width:none;break-after:avoid;font-family:var(--mono);font-size:8pt;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--moss);font-weight:500;padding-bottom:1.6mm;border-bottom:.6pt solid var(--line-2);margin-bottom:3.4mm}
+.cv-lead{font-size:10pt;line-height:1.55;color:var(--ink-2);margin:0 0 2.6mm}
+.cv-tally{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:4mm 0 0}
+.cv-tally div{border-left:1.6pt solid var(--moss);padding-left:2.6mm}
+.cv-tally b{display:block;font-family:var(--disp);font-size:15pt;font-weight:500;line-height:1}
+.cv-tally span{font-family:var(--mono);font-size:6.6pt;letter-spacing:.11em;text-transform:uppercase;color:var(--warm)}
+
+.cv-job{margin-bottom:5mm}
+.cv-job .hd{break-inside:avoid;break-after:avoid;display:flex;justify-content:space-between;gap:5mm;align-items:baseline;
+  border-bottom:.4pt solid var(--line);padding-bottom:1.2mm;margin-bottom:1.8mm}
+.cv-job .hd h3{font-family:var(--disp);font-weight:500;font-size:12pt;letter-spacing:-.01em}
+.cv-job .hd .when{font-family:var(--mono);font-size:8pt;color:var(--warm);white-space:nowrap}
+.cv-job .where{font-size:9.4pt;color:var(--moss);margin:0 0 1mm}
+.cv-job .what{font-family:var(--disp);font-style:italic;font-size:10.4pt;margin:0 0 1mm;color:var(--ink)}
+.cv-job .sup{font-family:var(--mono);font-size:7.6pt;color:var(--warm);margin:0 0 2mm}
+.cv-job p.ctx{font-size:9.2pt;line-height:1.5;color:var(--ink-2);margin:0 0 2.4mm;text-align:justify}
+.cv-job h4{break-after:avoid;font-family:var(--mono);font-size:7.2pt;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--warm);font-weight:500;margin:2.6mm 0 1.4mm}
+.cv-job ul{margin:0;padding:0;list-style:none}
+.cv-job li{break-inside:avoid;font-size:9.2pt;line-height:1.46;color:var(--ink-2);padding-left:4mm;position:relative;margin-bottom:1.2mm}
+.cv-job li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.6mm;height:.5pt;background:var(--moss)}
+.cv-job li b{color:var(--ink);font-weight:600}
+
+.cv-grid2{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+.cv-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 6mm}
+.cv-block{break-inside:avoid-page}
+.cv-block h4{font-family:var(--mono);font-size:7.2pt;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--moss);font-weight:500;margin:0 0 1.4mm}
+.cv-block ul{margin:0;padding:0;list-style:none}
+.cv-block li{font-size:8.6pt;line-height:1.4;color:var(--ink-2);margin-bottom:1mm}
+.cv-line{display:grid;grid-template-columns:1fr auto;gap:1mm 5mm;align-items:baseline;
+  padding:1.8mm 0;border-bottom:.4pt solid var(--line);break-inside:avoid-page}
+.cv-line .t{font-size:9.6pt;font-weight:600;margin:0}
+.cv-line .d{font-size:8.8pt;color:var(--ink-2);margin:.6mm 0 0;grid-column:1/-1}
+.cv-line .r{font-family:var(--mono);font-size:7.6pt;color:var(--warm);text-align:right;white-space:nowrap}
+.cv-pub{padding:1.6mm 0;border-bottom:.4pt solid var(--line);break-inside:avoid-page;
+  display:grid;grid-template-columns:7mm 1fr;gap:0 2mm}
+.cv-pub .n{font-family:var(--mono);font-size:7.4pt;color:var(--moss);padding-top:.5mm}
+.cv-pub .t{font-size:9.2pt;line-height:1.4;font-weight:600;margin:0 0 .6mm}
+.cv-pub .a{font-size:8.2pt;line-height:1.38;color:var(--warm);margin:0 0 .6mm}
+.cv-pub .a em{font-style:normal;color:var(--ink);font-weight:600}
+.cv-pub .s{font-family:var(--mono);font-size:7.4pt;color:var(--ink-2);margin:0}
+.cv-foot{margin-top:8mm;padding-top:3mm;border-top:.6pt solid var(--line-2);
+  font-family:var(--mono);font-size:7pt;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--warm);display:flex;justify-content:space-between;gap:4mm;flex-wrap:wrap}
+@media screen and (max-width:820px){
+  .cv{padding:10mm 8mm}
+  .cv-grid2,.cv-grid3{grid-template-columns:1fr}
+  .cv-tally{grid-template-columns:repeat(2,1fr)}
+}

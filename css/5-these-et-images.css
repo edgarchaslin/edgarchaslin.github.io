@@ -1,0 +1,115 @@
+/* ======================================================================
+   BOUTON CV, LISEUSE DE THÈSE ET VISIONNEUSE D'IMAGES
+   ====================================================================== */
+
+/* ── Bouton CV et pastilles de liens ──────────────────────────────── */
+.aside .soc a{padding:6px 12px}
+.cvbtn{font-family:var(--mono);cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:#fff;color:var(--ink);
+  border:1px solid #fff;border-radius:99px;padding:9px 16px;margin-top:11px;transition:.2s}
+.cvbtn:hover{background:var(--moss);border-color:var(--moss);color:#fff}
+.cvbtn i{font-style:normal;font-size:12px;line-height:1}
+
+/* ── Thèse ────────────────────────────────────────────────────────── */
+.th-meta{display:flex;flex-wrap:wrap;gap:7px 24px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.05em;color:var(--warm);margin:-16px 0 26px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.th-meta b{color:var(--moss);font-weight:400}
+.th-titre{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(18px,2.2vw,24px);
+  line-height:1.32;letter-spacing:-.015em;margin:0 0 20px;max-width:44ch}
+/* Liseuse : le sommaire à gauche, le manuscrit à droite.
+   Volontairement dépouillée — ni cadre épais, ni barre d'outils, ni
+   boutons de navigation : cliquer un chapitre suffit, et la barre grise
+   du lecteur PDF est masquée par les réglages d'adresse (toolbar=0). */
+/* La colonne de contenu ne fait que 60 % de la largeur de l'écran :
+   en dessous de 1500 px, mettre le sommaire à côté du manuscrit ne
+   laisserait à celui-ci que ~300 px et le rendrait illisible. Le
+   sommaire repasse donc au-dessus, et le PDF prend toute la largeur. */
+.reader{display:grid;grid-template-columns:minmax(0,270px) 1fr;gap:clamp(20px,3vw,40px);
+  margin-top:38px;align-items:start}
+@media(max-width:1500px){.reader{grid-template-columns:1fr;gap:26px}}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li + li{margin-top:1px}
+.toc button{width:100%;display:grid;grid-template-columns:1fr auto;gap:3px 14px;
+  align-items:baseline;background:none;border:0;border-left:2px solid transparent;
+  text-align:left;cursor:pointer;padding:8px 0 8px 13px;
+  font-family:var(--body);font-size:13.5px;line-height:1.42;color:var(--ink-2);transition:.18s}
+.toc button em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--warm)}
+.toc button:hover{color:var(--ink);border-left-color:var(--line-2)}
+.toc button.on{color:var(--moss);border-left-color:var(--moss)}
+.toc button.on em{color:var(--moss)}
+.dl{display:flex;flex-wrap:wrap;gap:7px 18px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.dl a{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--warm);border-bottom:1px solid transparent;transition:.2s}
+.dl a:hover{color:var(--moss);border-bottom-color:var(--moss)}
+.frame{border:1px solid var(--line);background:#fff;overflow:hidden}
+.frame iframe{width:100%;height:clamp(460px,78vh,860px);border:0;display:block;background:#fff}
+.absent{padding:clamp(30px,5vw,60px);text-align:center;color:var(--warm);font-size:14.5px;line-height:1.75}
+.absent strong{display:block;font-family:var(--disp);font-style:italic;font-weight:300;font-size:20px;
+  color:var(--ink);margin-bottom:10px}
+.absent code{font-family:var(--mono);font-size:12.5px;background:var(--paper);padding:2px 7px;
+  border-radius:3px;color:var(--ink)}
+
+.contain{object-fit:contain!important;background:#fff;padding:4%}
+
+/* ══ VISIONNEUSE PLEIN ÉCRAN ═══════════════════════════════════════════
+   Le cadre « lb-stage » a une taille fixe : l'image s'y inscrit entière
+   au départ, puis le zoom la déplace À L'INTÉRIEUR de ce cadre. Rien ne
+   bouge donc autour d'elle — ni la légende, ni les flèches.
+   ═════════════════════════════════════════════════════════════════════ */
+.lightbox{position:fixed;inset:0;z-index:99;background:rgba(16,14,12,.96);
+  display:grid;place-items:center;align-content:center;overflow:auto;
+  padding:clamp(14px,3vh,30px) clamp(14px,4vw,72px)}
+.lightbox[hidden]{display:none}
+/* Sur ce fond sombre, le vert d'accent du focus deviendrait illisible. */
+.lightbox :focus-visible{outline-color:#fff}
+.lightbox figure{margin:0;width:min(1180px,100%);display:flex;flex-direction:column;gap:15px}
+
+/* grid-template en minmax(0,1fr) est indispensable : sans lui, la
+   grille se dimensionne d'abord sur l'image, et le « max-height:100% »
+   de celle-ci n'a plus de hauteur de référence à laquelle se rapporter.
+   L'image déborderait alors du cadre et se retrouverait rognée. */
+.lb-stage{position:relative;width:100%;height:min(68vh,760px);overflow:hidden;
+  display:grid;grid-template:minmax(0,1fr) / minmax(0,1fr);place-items:center;
+  cursor:zoom-in;touch-action:none}
+.lb-stage.zoome{cursor:grab}
+.lb-stage.zoome:active{cursor:grabbing}
+.lb-stage img{max-width:100%;max-height:100%;width:auto;height:auto;border-radius:3px;
+  background:#fff;transform-origin:center center;user-select:none;-webkit-user-drag:none}
+/* Le zoom à la molette et le glisser doivent coller au doigt : pas de
+   transition. Elle n'est rétablie que pour le zoom au clic et les
+   raccourcis clavier, où le mouvement aide à comprendre ce qui change. */
+.lb-stage.anime img{transition:transform .18s cubic-bezier(.2,.7,.3,1)}
+
+/* Barre d'échelle — n'apparaît que si l'image la déclare. Sa longueur
+   est recalculée à chaque zoom, elle reste donc toujours juste. */
+.lb-echelle{position:absolute;left:15px;bottom:15px;display:flex;flex-direction:column;gap:5px;
+  pointer-events:none}
+.lb-echelle[hidden]{display:none}
+.lb-echelle .bar{height:4px;background:#fff;border:1px solid rgba(0,0,0,.5);border-radius:1px}
+.lb-echelle .txt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.85)}
+
+.lightbox figcaption{text-align:center;max-width:74ch;margin:0 auto}
+.lb-tech{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--sage);margin:0 0 5px}
+.lb-titre{font-family:var(--disp);font-weight:500;font-size:16.5px;line-height:1.35;color:#fff;margin:0 0 6px}
+.lb-leg{font-size:13.5px;line-height:1.62;color:#CFC7BD;margin:0}
+.lb-aide{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);margin:13px 0 0}
+.lb-num{position:fixed;left:0;right:0;bottom:15px;margin:0;text-align:center;pointer-events:none;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.55)}
+
+.lb-btn{position:fixed;display:grid;place-items:center;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.28);color:#fff;cursor:pointer;border-radius:99px;transition:.2s}
+.lb-btn[hidden]{display:none}
+.lb-btn:hover{background:#fff;color:var(--ink);border-color:#fff}
+.lb-close{top:16px;right:20px;width:38px;height:38px;font-size:15px}
+.lb-prev,.lb-next{top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:27px;
+  line-height:1;padding-bottom:5px}
+.lb-prev{left:15px}
+.lb-next{right:15px}
+@media(max-width:760px){
+  .lb-stage{height:52vh}
+  .lb-prev,.lb-next{top:auto;bottom:48px;transform:none;width:42px;height:42px}
+  .lb-aide{display:none}
+}
