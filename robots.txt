@@ -1,0 +1,5 @@
+# Tous les moteurs de recherche sont les bienvenus, sur toutes les pages.
+User-agent: *
+Allow: /
+
+Sitemap: https://edgarchaslin.github.io/sitemap.xml

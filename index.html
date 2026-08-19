@@ -48,6 +48,61 @@
 <link rel="stylesheet" href="css/5-these-et-images.css">
 <link rel="stylesheet" href="css/6-cv-genere.css">
 <link rel="stylesheet" href="css/7-impression.css">
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     FICHE D'IDENTITÉ POUR LES MOTEURS DE RECHERCHE
+     Ce bloc n'est pas affiché : il décrit la personne dans le format que
+     Google, Bing et consorts savent lire directement, sans avoir à
+     exécuter le moindre programme. La liste « sameAs » est la plus
+     importante : elle relie cette page aux profils ORCID, Scholar, HAL,
+     ResearchGate et LinkedIn, ce qui permet aux moteurs de comprendre
+     qu'il s'agit bien de la même personne.
+     À tenir à jour en même temps que contenu/1-identite.js.
+     ═══════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://edgarchaslin.github.io/#edgar-chaslin",
+  "name": "Edgar Chaslin",
+  "givenName": "Edgar",
+  "familyName": "Chaslin",
+  "jobTitle": "Post-doctoral Researcher",
+  "description": "Post-doctoral researcher at CEA SPEC, Université Paris-Saclay. Epitaxial growth and characterisation of ferroelectric oxide thin films, from deposition to unit-cell polarisation mapping.",
+  "url": "https://edgarchaslin.github.io/",
+  "image": "https://edgarchaslin.github.io/images/apercu.jpg",
+  "nationality": "French",
+  "worksFor": {
+    "@type": "ResearchOrganization",
+    "name": "CEA — Service de Physique de l'État Condensé (SPEC)",
+    "url": "https://iramis.cea.fr/spec/"
+  },
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Université Paris-Saclay",
+    "url": "https://www.universite-paris-saclay.fr/"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Université de Rennes" },
+    { "@type": "CollegeOrUniversity", "name": "ENSIL-ENSCI, Limoges" },
+    { "@type": "CollegeOrUniversity", "name": "Université de Limoges" }
+  ],
+  "knowsAbout": [
+    "Ferroelectric thin films", "Epitaxial oxide growth", "BaTiO3",
+    "RF magnetron sputtering", "Pulsed laser deposition",
+    "Molecular beam epitaxy", "X-ray diffraction",
+    "Piezoresponse force microscopy", "Electron holography",
+    "Reconfigurable microwave devices"
+  ],
+  "sameAs": [
+    "https://orcid.org/0009-0008-6824-3785",
+    "https://scholar.google.com/citations?user=5qYy_gwAAAAJ",
+    "https://cv.hal.science/edgar-chaslin",
+    "https://www.researchgate.net/profile/Edgar-Chaslin-3",
+    "https://www.linkedin.com/in/edgar-chaslin-756761171/"
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -69,7 +124,40 @@
   </aside>
   <div class="flow">
     <nav class="topbar" id="topbar" aria-label="Sections"></nav>
-    <main id="main"><div class="printhead" id="printhead"></div></main>
+    <main id="main"><div class="printhead" id="printhead"></div>
+      <!-- Version de secours, affichée uniquement si le JavaScript est
+           désactivé — c'est le cas de certains moteurs de recherche, qui
+           ne verraient sinon qu'une page vide. Volontairement réduite à
+           ce qui ne change presque jamais : inutile d'y recopier tout le
+           site, quelques lignes suffisent à ce qu'il soit compris. -->
+      <noscript>
+        <section id="apercu">
+          <h1>Edgar Chaslin</h1>
+          <p class="lead">Post-doctoral researcher at <strong>CEA SPEC</strong>,
+            Université Paris-Saclay, France.</p>
+          <p class="lead">Epitaxial growth and characterisation of ferroelectric
+            oxide thin films — BaTiO<sub>3</sub>, (Ba,Sr)TiO<sub>3</sub>,
+            (La,Sr)MnO<sub>3</sub>, CeO<sub>2</sub> and MgO — covering the full
+            chain from deposition by sputtering, pulsed laser deposition and
+            molecular beam epitaxy, through photolithography, to characterisation
+            by X-ray diffraction, piezoresponse force microscopy and
+            unit-cell-resolved electron microscopy.</p>
+          <p class="lead">PhD in 2025 from Université de Rennes (IETR): dielectric
+            and ferroelectric thin films for reconfigurable microwave devices with
+            low visual impact.</p>
+          <p class="lead">Profiles:
+            <a href="https://orcid.org/0009-0008-6824-3785">ORCID</a> ·
+            <a href="https://scholar.google.com/citations?user=5qYy_gwAAAAJ">Google Scholar</a> ·
+            <a href="https://cv.hal.science/edgar-chaslin">HAL</a> ·
+            <a href="https://www.researchgate.net/profile/Edgar-Chaslin-3">ResearchGate</a> ·
+            <a href="https://www.linkedin.com/in/edgar-chaslin-756761171/">LinkedIn</a>
+          </p>
+          <p class="lead"><em>This page needs JavaScript to display its full
+            content: research projects, thesis reader, publications, awards,
+            teaching and downloadable CV.</em></p>
+        </section>
+      </noscript>
+    </main>
   </div>
 </div>
 
